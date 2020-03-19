@@ -1,0 +1,54 @@
+---
+title: "Problems and Solutions to Compile a PDF Version of Advanced R"
+author: "Liu Yuzhi"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Download the source file from [*Compile Hadley’s Advanced R to a PDF*](http://brettklamer.com/diversions/statistical/compile-hadleys-advanced-r-programming-to-a-pdf/). Install R Package dependencies using `devtools::install_github("hadley/sloop")` and `devtools::install_github("hadley/emo")`. 
+Then,I install the  "xelatex" package,cccording to the  reference [*TinyTex*](https://yihui.name/tinytex/#for-r-users)(The lowercase *tinytex* means the R package, and the camel-case *TinyTeX* means the *LaTeX* distribution). And I install some packages,like "bookdown".
+Finanlly, use `bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")` to compile the book.
+
+First of all, upgrade RStudio and installed packages to the latest version. During the building process, I've met several problems, most of them are package missing. The followings are the errors I've met and how I solved them. 
+
+
+
+## 'make' not Found
+
+After installed *Rtools*, I received this warning *In system(cmd) : 'make' not found*. 
+```{r}
+Right-click my computer - properties - advanced system Settings - environment variables,and add the path in the system settings "C:/Rtools/bin"
+```
+
+
+## Error in loadNamespace(name) : 不存在叫‘devtools’这个名字的程辑包    
+```{r}
+install the "devtools" package
+```
+
+
+
+## 文件advanced R压缩包不在指定位置library中
+```{r}
+put the "adv-r-master" on the "C:/Rtools/adv-r-masters"
+```
+
+
+## 错误: 程辑包‘glue’没有名字空间
+```{r}
+找到软件包所在路径，删除并重新安装
+```
+
+
+## Error in library(dplyr) : 不存在叫'dplyr'这个名字的程辑包
+```{r}
+install the "devtools" package
+```
+
+
+## 错误: LaTeX failed to compile _main.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips.
+```{r}
+Download the "MiKTeX", and add the path in the system settings .
+Then click the “setting”，choose the “Alwayes install missing package on-the-fly:"
+```
